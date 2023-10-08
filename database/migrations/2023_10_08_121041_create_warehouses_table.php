@@ -14,7 +14,8 @@ class CreateWarehousesTable extends Migration
     public function up()
     {
         Schema::create('warehouses', function (Blueprint $table) {
-            $table->id();
+//            $table->id();
+            $table->integerIncrements('id')->unsigned();
 			$table->string('title');
             $table->timestamps();
         });

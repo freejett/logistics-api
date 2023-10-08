@@ -14,7 +14,8 @@ class CreateFurnitureTypesTable extends Migration
     public function up()
     {
         Schema::create('furniture_types', function (Blueprint $table) {
-            $table->id();
+//            $table->id();
+            $table->integerIncrements('id')->unsigned();
 			$table->string('title');
             $table->timestamps();
         });
