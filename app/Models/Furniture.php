@@ -9,6 +9,8 @@ class Furniture extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['furniture_type_id', 'colour_id'];
+
 	public function furnitureType()
 	{
 		return $this->hasOne('App\Models\FurnitureType');

@@ -9,6 +9,8 @@ class Logistic extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['furniture_id', 'warehouse_id', 'arrival_date', 'departure_date'];
+
 	public function warehouse()
 	{
 		return $this->hasOne('App\Models\Warehouse');
