@@ -11,6 +11,6 @@ class Warehouse extends Model
 
 	public function logistic()
 	{
-		return $this->belongsTo('App\Models\Logistic');
+		return $this->hasMany('App\Models\Logistic');
 	}
 }

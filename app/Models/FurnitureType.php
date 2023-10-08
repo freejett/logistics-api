@@ -11,6 +11,6 @@ class FurnitureType extends Model
 
 	public function furniture()
 	{
-		return $this->belongsTo('App\Models\Furniture');
+		return $this->hasMany('App\Models\Furniture');
 	}
 }

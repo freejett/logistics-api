@@ -13,11 +13,16 @@ class Furniture extends Model
 
 	public function furnitureType()
 	{
-		return $this->hasOne('App\Models\FurnitureType');
+		return $this->belongsTo('App\Models\FurnitureType');
 	}
 
 	public function colour()
 	{
-		return $this->hasOne('App\Models\Colour');
+		return $this->belongsTo('App\Models\Colour');
 	}
+
+    public function logistic()
+    {
+        return $this->hasMany(Logistic::class);
+    }
 }
