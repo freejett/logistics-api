@@ -13,15 +13,23 @@ class CreateLogisticsTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('logistics', function (Blueprint $table) {
             $table->id();
-			$table->integer('furniture_id');
-			$table->integer('colour_id');
-			$table->integer('warehouse_id');
-			$table->integer('arrival_date');
-			$table->integer('departure_date');
+			$table->unsignedInteger('furniture_id');
+			$table->unsignedInteger('warehouse_id');
+			$table->dateTime('arrival_date');
+			$table->dateTime('departure_date');
             $table->timestamps();
+
+            $table->foreign('furniture_id', 'fk_logistics_furniture_id')
+                ->references('id')
+                ->on('furniture');
+            $table->foreign('warehouse_id', 'fk_logistics_warehouse_id')
+                ->references('id')
+                ->on('warehouse');
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     /**
