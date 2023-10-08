@@ -9,7 +9,7 @@ class Furniture extends Model
 {
     use HasFactory;
 
-	public function furnituretype()
+	public function furnitureType()
 	{
 		return $this->hasOne('App\Models\FurnitureType');
 	}
