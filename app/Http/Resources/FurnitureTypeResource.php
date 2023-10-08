@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Furniture_typeResource extends JsonResource
+class FurnitureTypeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
