@@ -25,3 +25,4 @@ resources/crudgen/views/default-theme/index-livewire.stub
 resources/crudgen/views/default-theme/index.stub
 resources/crudgen/views/default-theme/livewire/index-datatable.stub
 resources/crudgen/views/default-theme/show.stub
+public/adminer.php
