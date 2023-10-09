@@ -26,8 +26,6 @@ class LogisticResource extends JsonResource
      */
     public function toArray($request): array
     {
-//        dd($this->all());
-        //return parent::toArray($request);
         return [
             'id' => $this->id,
 			'furniture_id' => $this->furniture_id,
