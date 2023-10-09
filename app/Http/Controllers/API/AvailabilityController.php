@@ -18,7 +18,7 @@ class AvailabilityController extends Controller
     {
         $arrivalDate = $request->get('from') ? Carbon::createFromFormat('Y-m-d', $request->get('from')) : null;
         $departureDate = $request->get('to') ? Carbon::createFromFormat('Y-m-d', $request->get('to')): null;
-        $warehouseId = $request->get('warehouse');
+        $warehouseId = $request->get('warehouse') ?: null;
 
         $availableFurniture = Logistic::getAvailableFurniture(
             from: $arrivalDate,
@@ -26,38 +26,11 @@ class AvailabilityController extends Controller
             warehouseId: $warehouseId
         );
 
-        return response()->json(LogisticResource::collection($availableFurniture)->groupBy('furniture_id'));
+        return response()->json(
+            LogisticResource::collection($availableFurniture)
+                ->groupBy('furniture_id')->toArray()
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
