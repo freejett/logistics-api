@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use App\Models\Logistic;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LogisticResource extends JsonResource
@@ -14,24 +16,24 @@ class LogisticResource extends JsonResource
      */
     public string $collects = Logistic::class;
 
-    public $preserveKeys = true;
+//    public $preserveKeys = true;
 
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @param Request $request
+     * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
 //        dd($this->all());
         //return parent::toArray($request);
         return [
             'id' => $this->id,
 			'furniture_id' => $this->furniture_id,
-			'furniture_title' => $this->furniture()->first()->furnitureType->title,
+			'furniture_title' => $this->furniture()->first()->furnitureType?->title,
 			'colour_id' => $this->furniture->colour_id,
-			'colour_title' => $this->furniture()->first()->colour->title,
+			'colour_title' => $this->furniture()->first()->colour?->title,
 			'warehouse_id' => $this->warehouse_id,
 			'warehouse_title' => $this->warehouse->title,
 			'arrival_date' => $this->arrival_date,
