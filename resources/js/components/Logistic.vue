@@ -1,5 +1,9 @@
 <template>
     <h3>Модуль логистики</h3>
+
+    <log-filter @applyFilterParams="setFilterParams"></log-filter>
+    <hr class="mb-5">
+
     <furniture-log-table
         v-if="furnitureLog.length > 0"
         v-for="(furnitureLogItem, index) in furnitureLog"
@@ -10,10 +14,12 @@
 
 <script>
 import FurnitureLogTable from "./FurnitureLogTable.vue";
+import LogFilter from "./LogFilter.vue";
+
 export default {
     name: "Logistic",
     components: {
-        FurnitureLogTable
+        LogFilter, FurnitureLogTable
     },
     data() {
         return {
@@ -29,12 +35,12 @@ export default {
             try {
                 const response = await axios.get(this.apiBaseUri + 'availability', {
                     params: {
-                        // from: this.page,
-                        // to: this.limit,
-                        // warehouse: this.limit,
-                        from: '2023-09-11',
-                        to: '2023-10-04',
-                        warehouse: null,
+                        from: this.from,
+                        to: this.to,
+                        warehouse: this.warehouse,
+                        // from: '2023-09-11',
+                        // to: '2023-10-04',
+                        // warehouse: null,
                     }
                 })
                 // console.log(Object.values(response.data))
@@ -45,6 +51,13 @@ export default {
             } finally {
 
             }
+        },
+        setFilterParams(filter) {
+            this.from = filter.from
+            this.to = filter.to
+            this.warehouse = filter.warehouse
+
+            this.getLogistics()
         }
     },
     mounted() {
