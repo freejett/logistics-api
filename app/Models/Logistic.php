@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Logistic extends Model
 {
@@ -13,12 +14,18 @@ class Logistic extends Model
 
     protected $fillable = ['furniture_id', 'warehouse_id', 'arrival_date', 'departure_date'];
 
-	public function warehouse()
+    /**
+     * @return BelongsTo
+     */
+	public function warehouse(): BelongsTo
 	{
 		return $this->belongsTo('App\Models\Warehouse');
 	}
 
-	public function furniture()
+    /**
+     * @return BelongsTo
+     */
+	public function furniture(): BelongsTo
 	{
 		return $this->belongsTo(Furniture::class);
 	}
@@ -44,7 +51,6 @@ class Logistic extends Model
             $query->where('warehouse_id', $warehouseId);
         }
 
-//        dd(self::orderBy('arrival_date', 'desc'));
         return $query->orderBy('arrival_date', 'desc')->get();
     }
 }

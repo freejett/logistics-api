@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class AvailabilityController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Возвращаем список товаров и историю их перемещений с учетом фильтрации
      */
     public function index(Request $request): JsonResponse
     {
