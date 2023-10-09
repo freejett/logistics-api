@@ -31,7 +31,7 @@ class Logistic extends Model
      */
     public static function getAvailableFurniture(Carbon|null $from, Carbon|null $to, int|null $warehouseId): Collection
     {
-        $query = self::with(['furniture', 'furniture.furnitureType', 'furniture.colour', 'warehouse']);
+        $query = self::with(['furniture', 'furniture' => ['furnitureType', 'colour'], 'warehouse']);
 
         if ($from) {
             $query->where('arrival_date', '>=', $from);
